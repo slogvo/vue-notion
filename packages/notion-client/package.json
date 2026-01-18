@@ -1,6 +1,6 @@
 {
   "name": "@slogvo/notion-client",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "type": "module",
   "description": "Robust TypeScript client for the unofficial Notion API.",
   "repository": "slogvo/vue-notion",

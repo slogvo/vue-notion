@@ -725,8 +725,8 @@ svg.notion-page-icon {
 .notion-page {
   box-sizing: border-box;
   width: var(--notion-max-width);
-  padding-left: calc(min(16px, 8vw));
-  padding-right: calc(min(16px, 8vw));
+  /* padding-left: calc(min(16px, 8vw)); */
+  /* padding-right: calc(min(16px, 8vw)); */
 }
 
 .notion-full-width {
@@ -797,6 +797,22 @@ svg.notion-page-icon {
   margin: 1px 0;
   transition: background 120ms ease-in 0s;
 }
+
+@media (max-width: 768px) {
+  .notion-title {
+    font-size: 1.75em;
+  }
+  .notion-h1 {
+    font-size: 1.5em;
+  }
+  .notion-h2 {
+    font-size: 1.3em;
+  }
+  .notion-h3 {
+    font-size: 1.1em;
+  }
+}
+
 
 .notion-page-link:hover {
   background: var(--bg-color-0);

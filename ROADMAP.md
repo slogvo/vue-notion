@@ -138,6 +138,7 @@
 - [ ] `notion-utils` and `notion-client` need proper types or better declaration files (currently using `env.d.ts`).
 - [ ] Medium Zoom needs testing with SSR (already added window check).
 - [x] Fix `embed` block not rendering if source is an image url (Needs fix in Asset.vue)
+- [ ] Add responsive styles for `notion-title`, `notion-h1`, `h2`, `h3` (currently too large on mobile).
 
 ---
 
