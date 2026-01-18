@@ -1,6 +1,6 @@
 {
   "name": "@slogvo/notion-client",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "type": "module",
   "description": "Robust TypeScript client for the unofficial Notion API.",
   "repository": "slogvo/vue-notion",
@@ -43,7 +43,7 @@
   "dependencies": {
     "ofetch": "^1.4.1",
     "@slogvo/notion-types": "^0.1.1",
-    "@slogvo/notion-utils": "^0.1.1",
+    "@slogvo/notion-utils": "^0.1.2",
     "p-map": "^7.0.3"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@slogvo/vue-notion",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "type": "module",
   "description": "Fast and accurate Vue renderer for Notion.",
   "repository": "slogvo/vue-notion",
@@ -58,7 +58,7 @@
     "lodash.throttle": "^4.1.1",
     "medium-zoom": "^1.1.0",
     "@slogvo/notion-types": "^0.1.1",
-    "@slogvo/notion-utils": "^0.1.1",
+    "@slogvo/notion-utils": "^0.1.2",
     "prismjs": "^1.29.0"
   },
   "devDependencies": {

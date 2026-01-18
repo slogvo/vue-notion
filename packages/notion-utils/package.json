@@ -1,6 +1,6 @@
 {
   "name": "@slogvo/notion-utils",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "Useful utilities for working with Notion data. Isomorphic.",
   "repository": "slogvo/vue-notion",
@@ -47,10 +47,10 @@
     "test:unit": "vitest run"
   },
   "dependencies": {
-    "is-url-superb": "catalog:",
-    "memoize": "catalog:",
-    "normalize-url": "catalog:",
-    "@slogvo/notion-types": "workspace:*",
-    "p-queue": "catalog:"
+    "is-url-superb": "^6.1.0",
+    "memoize": "^10.1.0",
+    "normalize-url": "^8.0.1",
+    "@slogvo/notion-types": "^0.1.1",
+    "p-queue": "^8.1.0"
   }
 }
