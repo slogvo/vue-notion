@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "composite": false,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "outDir": "build",
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "types": ["node"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2018",
+    "lib": ["ES2018", "DOM", "DOM.Iterable"]
+  },
+
+  "include": ["src/**/*", "env.d.ts"],
+  "exclude": ["node_modules", "build", "**/*.spec.ts", "**/*.test.ts"]
+}

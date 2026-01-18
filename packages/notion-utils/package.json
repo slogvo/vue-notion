@@ -1,0 +1,56 @@
+{
+  "name": "@slogvo/notion-utils",
+  "version": "0.1.1",
+  "type": "module",
+  "description": "Useful utilities for working with Notion data. Isomorphic.",
+  "repository": "slogvo/vue-notion",
+  "author": "Vue Notion Contributors",
+  "license": "MIT",
+  "keywords": [
+    "notion",
+    "notion-api",
+    "utils",
+    "typescript"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "bugs": {
+    "url": "https://github.com/slogvo/vue-notion/issues"
+  },
+  "homepage": "https://github.com/slogvo/vue-notion#readme",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "build"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "watch": "tsup --watch --silent --onSuccess 'echo build successful'",
+    "clean": "del build",
+    "test": "run-s test:*",
+    "test:lint": "eslint .",
+    "test:typecheck": "tsc --noEmit",
+    "test:unit": "vitest run"
+  },
+  "dependencies": {
+    "is-url-superb": "catalog:",
+    "memoize": "catalog:",
+    "normalize-url": "catalog:",
+    "@slogvo/notion-types": "workspace:*",
+    "p-queue": "catalog:"
+  }
+}

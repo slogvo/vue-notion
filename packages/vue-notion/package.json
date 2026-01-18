@@ -1,0 +1,79 @@
+{
+  "name": "@slogvo/vue-notion",
+  "version": "0.2.3",
+  "type": "module",
+  "description": "Fast and accurate Vue renderer for Notion.",
+  "repository": "slogvo/vue-notion",
+  "author": "Vue Notion Contributors",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue3",
+    "nuxt",
+    "nuxt3",
+    "notion",
+    "notion-api",
+    "renderer",
+    "cms",
+    "typescript"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "bugs": {
+    "url": "https://github.com/slogvo/vue-notion/issues"
+  },
+  "homepage": "https://github.com/slogvo/vue-notion#readme",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    },
+    "./styles.css": "./src/styles.css"
+  },
+  "files": [
+    "build",
+    "src/styles.css"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "vite build && node -e \"const fs = require('fs'); fs.copyFileSync('src/styles.css', 'build/styles.css')\"",
+    "dev": "vite build --watch",
+    "watch": "vite build --watch",
+    "clean": "del build",
+    "test": "run-s test:*",
+    "test:lint": "eslint .",
+    "test:typecheck": "vue-tsc --noEmit",
+    "test:unit": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "katex": "^0.16.11",
+    "lodash.throttle": "^4.1.1",
+    "medium-zoom": "^1.1.0",
+    "@slogvo/notion-types": "^0.1.1",
+    "@slogvo/notion-utils": "^0.1.1",
+    "prismjs": "^1.29.0"
+  },
+  "devDependencies": {
+    "@types/lodash.throttle": "^4.1.7",
+    "@types/prismjs": "^1.26.5",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vue/tsconfig": "0.7.0",
+    "vite-plugin-dts": "^4.5.4",
+    "vue": "^3.5.13",
+    "vue-pdf-embed": "^2.1.1"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.0"
+  },
+  "optionalDependencies": {
+    "vue-pdf-embed": "^2.1.1"
+  }
+}

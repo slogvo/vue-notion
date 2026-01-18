@@ -1,0 +1,25 @@
+{
+  "name": "example-examples",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev --port 3000",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "vue": "catalog:",
+    "nuxt": "^3.8.2",
+    "@slogvo/vue-notion": "workspace:*",
+    "@slogvo/notion-client": "workspace:*",
+    "@slogvo/notion-types": "workspace:*",
+    "@slogvo/notion-utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "vue-tsc": "catalog:",
+    "typescript": "catalog:"
+  }
+}

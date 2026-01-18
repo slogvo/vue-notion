@@ -1,0 +1,49 @@
+{
+  "name": "@slogvo/notion-client",
+  "version": "0.2.3",
+  "type": "module",
+  "description": "Robust TypeScript client for the unofficial Notion API.",
+  "repository": "slogvo/vue-notion",
+  "author": "Vue Notion Contributors",
+  "license": "MIT",
+  "keywords": [
+    "notion",
+    "notion-api",
+    "client",
+    "typescript"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "bugs": {
+    "url": "https://github.com/slogvo/vue-notion/issues"
+  },
+  "homepage": "https://github.com/slogvo/vue-notion#readme",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "build"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "watch": "tsup --watch --silent --onSuccess 'echo build successful'",
+    "clean": "del build",
+    "test": "run-s test:*",
+    "test:lint": "eslint .",
+    "test:typecheck": "tsc --noEmit",
+    "test:unit": "vitest run"
+  },
+  "dependencies": {
+    "ofetch": "^1.4.1",
+    "@slogvo/notion-types": "^0.1.1",
+    "@slogvo/notion-utils": "^0.1.1",
+    "p-map": "^7.0.3"
+  }
+}
