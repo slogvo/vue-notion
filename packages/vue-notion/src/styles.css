@@ -3251,10 +3251,40 @@ svg.notion-page-icon {
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 50% !important;
   color: #fff !important;
-  transition: all 0.2s ease-in-out !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
   display: flex !important;
-  align-items: center;
-  justify-content: center;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 48px !important;
+  height: 48px !important;
+}
+
+/* Ensure SVGs inside buttons are properly sized and centered */
+.vel-modal .btn__prev svg,
+.vel-modal .btn__next svg,
+.vel-modal .btn__close svg,
+.vel-modal .toolbar-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  fill: currentColor !important;
+}
+
+.vel-modal .btn__prev {
+  top: calc(50% - 24px) !important;
+  left: 30px !important;
+  transform: none !important;
+}
+
+.vel-modal .btn__next {
+  top: calc(50% - 24px) !important;
+  right: 30px !important;
+  transform: none !important;
+}
+
+.vel-modal .btn__close {
+  top: 30px !important;
+  right: 30px !important;
+  transform: none !important;
 }
 
 .vel-modal .btn__prev:hover,
@@ -3262,7 +3292,8 @@ svg.notion-page-icon {
 .vel-modal .btn__close:hover,
 .vel-modal .toolbar-btn:hover {
   background: rgba(255, 255, 255, 0.2) !important;
-  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  transform: scale(1.1) !important;
 }
 
 .vel-modal .vel-toolbar {
