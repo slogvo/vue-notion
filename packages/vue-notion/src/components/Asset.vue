@@ -149,7 +149,12 @@ const youtubeVideoId = computed(() => {
       :src="src"
       :alt="alt"
       :zoomable="zoomable"
-      :style="assetStyle"
+      :style="{
+        ...assetStyle,
+        width: '100%',
+        height: 'auto',
+        aspectRatio: 'inherit'
+      }"
     />
 
     <!-- Video -->
