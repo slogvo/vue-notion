@@ -43,14 +43,8 @@ const style = computed(() => {
     if (block_full_width || block_page_width) {
       s.width = '100%'
 
-      if (props.block.type === 'video') {
-        if (block_height) {
-          s.height = `${block_height}px`
-        } else if (block_aspect_ratio) {
-          s.paddingBottom = `${block_aspect_ratio * 100}%`
-        }
-      } else if (block_aspect_ratio && props.block.type !== 'image') {
-        s.paddingBottom = `${block_aspect_ratio * 100}%`
+      if (block_aspect_ratio) {
+        s.aspectRatio = `${1 / block_aspect_ratio}`
       } else if (block_height && props.block.type !== 'image') {
         s.height = `${block_height}px`
       }
@@ -70,6 +64,12 @@ const style = computed(() => {
       if (block_width) {
         s.width =
           typeof block_width === 'number' ? `${block_width}px` : block_width
+      }
+
+      if (block_aspect_ratio) {
+        s.aspectRatio = `${1 / block_aspect_ratio}`
+      } else if (block_height && props.block.type !== 'image') {
+        s.height = `${block_height}px`
       }
     }
   }

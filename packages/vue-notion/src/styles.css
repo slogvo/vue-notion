@@ -1066,6 +1066,7 @@ svg.notion-page-icon {
 }
 
 .notion-row {
+  align-items: flex-start;
   display: flex;
   overflow: hidden;
   width: 100%;
@@ -1074,6 +1075,7 @@ svg.notion-page-icon {
 
 @media (max-width: 640px) {
   .notion-row {
+  align-items: flex-start;
     flex-direction: column;
   }
 
@@ -3392,4 +3394,32 @@ svg.notion-page-icon {
 .notion-hide-title .notion-title,
 .notion-hide-title .notion-page-header-wrapper {
   display: none !important;
+}
+
+
+.notion-asset-wrapper {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.notion-asset-wrapper img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+}
+
+/* Ensure lazy load wrappers respect the aspect ratio passed from Asset.vue */
+.lazy-image-wrapper {
+  width: 100%;
+  height: auto;
+  aspect-ratio: inherit;
+}
+
+.lazy-image-wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
 }
