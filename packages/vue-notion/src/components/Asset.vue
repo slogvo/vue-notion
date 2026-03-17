@@ -80,7 +80,7 @@ const style = computed(() => {
 const assetStyle = computed(() => {
   const s: any = {}
   if (props.block.type === 'image' || isEmbedImage.value) {
-    s.objectFit = 'cover'
+    s.objectFit = 'contain'
   } else if (props.block.format?.block_preserve_scale) {
     s.objectFit = 'contain'
   }
