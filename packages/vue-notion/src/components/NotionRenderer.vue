@@ -40,6 +40,7 @@ const props = withDefaults(
     defaultPageCoverPosition?: number
     isImageZoomable?: boolean
     hideHeader?: boolean
+    hideTitle?: boolean
   }>(),
   {
     fullPage: false,
@@ -49,7 +50,8 @@ const props = withDefaults(
     mapPageUrl: (pageId: string) => `/${pageId}`,
     mapImageUrl: (url: string, block: Block) =>
       defaultMapImageUrl(url, block) || url,
-    hideHeader: false
+    hideHeader: false,
+    hideTitle: false
   }
 )
 
@@ -148,12 +150,21 @@ provideNotionContext({
 </script>
 
 <template>
-  <NotionBlockRenderer :level="0" :zoom="null" />
-  <VueEasyLightbox
-    v-if="isMounted"
-    :visible="lightboxVisible"
-    :imgs="lightboxImages"
-    :index="lightboxIndex"
-    @hide="lightboxVisible = false"
-  />
+  <div
+    :class="[
+      'notion',
+      darkMode ? 'dark-mode' : '',
+      fullPage ? 'notion-full-page' : '',
+      hideTitle ? 'notion-hide-title' : ''
+    ]"
+  >
+    <NotionBlockRenderer :level="0" :zoom="null" />
+    <VueEasyLightbox
+      v-if="isMounted"
+      :visible="lightboxVisible"
+      :imgs="lightboxImages"
+      :index="lightboxIndex"
+      @hide="lightboxVisible = false"
+    />
+  </div>
 </template>

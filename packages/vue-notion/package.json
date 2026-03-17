@@ -1,6 +1,6 @@
 {
   "name": "@slogvo/vue-notion",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "type": "module",
   "description": "Fast and accurate Vue renderer for Notion.",
   "repository": "slogvo/vue-notion",
