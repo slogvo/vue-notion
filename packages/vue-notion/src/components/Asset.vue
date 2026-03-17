@@ -51,7 +51,7 @@ const style = computed(() => {
         }
       } else if (block_aspect_ratio && props.block.type !== 'image') {
         s.paddingBottom = `${block_aspect_ratio * 100}%`
-      } else if (block_height) {
+      } else if (block_height && props.block.type !== 'image') {
         s.height = `${block_height}px`
       }
     } else {

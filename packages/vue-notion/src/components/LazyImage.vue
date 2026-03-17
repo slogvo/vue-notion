@@ -61,11 +61,13 @@ const onClick = () => {
       class="lazy-image-preview"
       :src="previewImage.dataURIBase64"
       :alt="alt"
+      :style="style"
       decoding="async"
     />
     <img
       ref="imageRef"
       :class="cs('lazy-image-real', isZoomable && 'zoom-in')"
+      :style="style"
       :src="src"
       :alt="alt"
       :width="previewImage.originalWidth"
