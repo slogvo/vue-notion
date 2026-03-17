@@ -80,24 +80,37 @@ const lightboxVisible = ref(false)
 const lightboxIndex = ref(0)
 const lightboxImages = ref<string[]>([])
 
-// Collect all images for the gallery
 const allImageUrls = computed(() => {
   const urls: string[] = []
   if (!props.recordMap?.block) return urls
 
   Object.values(props.recordMap.block).forEach(block => {
     const value = block.value
-    if (value?.type === 'image') {
+    // Include both image blocks and embedded images
+    const isImage = value?.type === 'image'
+    const isEmbedImage =
+      value?.type === 'embed' &&
+      value.properties?.source?.[0]?.[0] &&
+      /\.(jpeg|jpg|gif|png|webp|svg)($|\?)/i.test(value.properties.source[0][0])
+
+    if (isImage || isEmbedImage) {
       let src =
         props.recordMap.signed_urls?.[value.id] ||
         value.properties?.source?.[0]?.[0]
       if (src) {
         if (value.space_id) {
-          const url = new URL(src)
-          url.searchParams.set('spaceId', value.space_id)
-          src = url.toString()
+          try {
+            const url = new URL(src)
+            url.searchParams.set('spaceId', value.space_id)
+            src = url.toString()
+          } catch (e) {
+            // Handle invalid URL if necessary
+          }
         }
-        urls.push(props.mapImageUrl ? props.mapImageUrl(src, value) : src)
+        const mappedUrl = props.mapImageUrl
+          ? props.mapImageUrl(src, value)
+          : src
+        if (mappedUrl) urls.push(mappedUrl)
       }
     }
   })
@@ -129,7 +142,8 @@ provideNotionContext({
   forceCustomImages: !!props.components?.Image,
   zoom: zoom,
   hideHeader: props.hideHeader,
-  openLightbox
+  openLightbox,
+  isImageZoomable: props.isImageZoomable
 })
 </script>
 

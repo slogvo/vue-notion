@@ -45,4 +45,5 @@ export interface NotionContext {
   zoom?: any
   hideHeader?: boolean
   openLightbox?: (url: string) => void
+  isImageZoomable?: boolean
 }

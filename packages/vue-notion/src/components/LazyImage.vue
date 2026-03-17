@@ -20,14 +20,9 @@ const props = defineProps<{
   priority?: boolean
 }>()
 
-const {
-  recordMap,
-  previewImages,
-  forceCustomImages,
-  components,
-  zoom,
-  openLightbox
-} = useNotionContext()
+const { recordMap, previewImages, openLightbox } = useNotionContext()
+
+const isZoomable = computed(() => !!openLightbox)
 
 const previewImage = computed(() => {
   if (!previewImages || !props.src) return null
@@ -40,13 +35,11 @@ const previewImage = computed(() => {
 const imageRef = ref<HTMLImageElement | null>(null)
 
 const onLoad = (e: Event) => {
-  if (props.zoomable && imageRef.value && (zoom as any)) {
-    ;(zoom as any).attach(imageRef.value)
-  }
+  // medium-zoom disabled
 }
 
 const onClick = () => {
-  if (props.zoomable && props.src && openLightbox) {
+  if (props.src && openLightbox) {
     openLightbox(props.src)
   }
 }
@@ -72,7 +65,7 @@ const onClick = () => {
     />
     <img
       ref="imageRef"
-      :class="cs('lazy-image-real', zoomable && 'zoom-in')"
+      :class="cs('lazy-image-real', isZoomable && 'zoom-in')"
       :src="src"
       :alt="alt"
       :width="previewImage.originalWidth"
@@ -88,7 +81,7 @@ const onClick = () => {
     <img
       v-if="src"
       ref="imageRef"
-      :class="cs(className, zoomable && 'zoom-in')"
+      :class="cs(className, isZoomable && 'zoom-in')"
       :style="style"
       :src="src"
       :alt="alt"
