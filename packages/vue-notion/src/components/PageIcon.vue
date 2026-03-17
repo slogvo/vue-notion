@@ -34,16 +34,34 @@ const icon = computed(
 const title = computed(() => getBlockTitle(props.block, recordMap))
 
 const isImageIcon = computed(() => {
-  return icon.value && (isUrl(icon.value) || icon.value.startsWith('/icons/'))
+  const v = icon.value
+  if (!v) return false
+  return (
+    isUrl(v) ||
+    v.startsWith('/icons/') ||
+    v.startsWith('data:') ||
+    v.startsWith('iconify:') ||
+    (!v.includes(' ') && v.length > 2 && /^[a-z0-9_-]+$/i.test(v))
+  )
 })
 
 const imageUrl = computed(() => {
-  if (!icon.value) return undefined
-  if (isUrl(icon.value)) {
-    return mapImageUrl(icon.value, props.block)
+  const v = icon.value
+  if (!v) return undefined
+  if (isUrl(v) || v.startsWith('data:')) {
+    return mapImageUrl(v, props.block)
   }
-  if (icon.value.startsWith('/icons/')) {
-    return `https://www.notion.so${icon.value}?mode=${darkMode ? 'dark' : 'light'}`
+  if (v.startsWith('iconify:')) {
+    const parts = v.replace('iconify:', '').split(':')
+    if (parts.length === 2) {
+      return `https://api.iconify.design/${parts[0]}/${parts[1]}.svg`
+    }
+  }
+  if (v.startsWith('/icons/')) {
+    return `https://www.notion.so${v}?mode=${darkMode ? 'dark' : 'light'}`
+  }
+  if (!v.includes(' ') && v.length > 2 && /^[a-z0-9_-]+$/i.test(v)) {
+    return `https://www.notion.so/icons/${v}_${darkMode ? 'dark' : 'light'}.svg`
   }
   return undefined
 })

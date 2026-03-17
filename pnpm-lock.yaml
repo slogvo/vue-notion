@@ -12,18 +12,6 @@ catalogs:
     '@vue/tsconfig':
       specifier: 0.7.0
       version: 0.7.0
-    is-url-superb:
-      specifier: ^6.1.0
-      version: 6.1.0
-    memoize:
-      specifier: ^10.1.0
-      version: 10.2.0
-    normalize-url:
-      specifier: ^8.0.1
-      version: 8.1.1
-    p-queue:
-      specifier: ^8.1.0
-      version: 8.1.1
     typescript:
       specifier: ^5.7.2
       version: 5.9.3
@@ -168,11 +156,11 @@ importers:
   packages/notion-client:
     dependencies:
       '@slogvo/notion-types':
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.1.1
+        version: 0.1.1
       '@slogvo/notion-utils':
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.1.2
+        version: 0.1.2
       ofetch:
         specifier: ^1.4.1
         version: 1.5.1
@@ -185,29 +173,29 @@ importers:
   packages/notion-utils:
     dependencies:
       '@slogvo/notion-types':
-        specifier: workspace:*
-        version: link:../notion-types
+        specifier: ^0.1.1
+        version: 0.1.1
       is-url-superb:
-        specifier: 'catalog:'
+        specifier: ^6.1.0
         version: 6.1.0
       memoize:
-        specifier: 'catalog:'
+        specifier: ^10.1.0
         version: 10.2.0
       normalize-url:
-        specifier: 'catalog:'
+        specifier: ^8.0.1
         version: 8.1.1
       p-queue:
-        specifier: 'catalog:'
+        specifier: ^8.1.0
         version: 8.1.1
 
   packages/vue-notion:
     dependencies:
       '@slogvo/notion-types':
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.1.1
+        version: 0.1.1
       '@slogvo/notion-utils':
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: ^0.1.2
+        version: 0.1.2
       katex:
         specifier: ^0.16.11
         version: 0.16.27
@@ -1734,12 +1722,12 @@ packages:
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
 
-  '@slogvo/notion-types@0.1.0':
-    resolution: {integrity: sha512-peM8dFzdJsaSl+z/BzkYSwoltBmv9PB3JU7baSoumzB8ojLb3C6yygRa/+zSPm1P/6oPD5pWjpkQaI/dLrg9vw==}
+  '@slogvo/notion-types@0.1.1':
+    resolution: {integrity: sha512-9WnoDspsuEIveqnV3sfwoXprV44jGVMoNztOaoumFbLf8pZ41srteuoIckowUjZVgva2i9zfyC+rpkeM85rKRw==}
     engines: {node: '>=20'}
 
-  '@slogvo/notion-utils@0.1.0':
-    resolution: {integrity: sha512-BNZrsbzqmgDIILg11xxKD+9CVYSBlMN8PJd+rak/+gbnRQGtwU40kZXNkULyoJjnE/dnGWGcRUpLzB5FQM93VQ==}
+  '@slogvo/notion-utils@0.1.2':
+    resolution: {integrity: sha512-k/sK47Lo/u3F5fzq+tLTFCrBUN3sZKzwS2nwqPOkYy93hQ0PnCXjNxjqhBObvIjU3+F2OU3Zsd3t8WcvJZaoVQ==}
     engines: {node: '>=20'}
 
   '@speed-highlight/core@1.2.14':
@@ -6256,11 +6244,11 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
-  '@slogvo/notion-types@0.1.0': {}
+  '@slogvo/notion-types@0.1.1': {}
 
-  '@slogvo/notion-utils@0.1.0':
+  '@slogvo/notion-utils@0.1.2':
     dependencies:
-      '@slogvo/notion-types': 0.1.0
+      '@slogvo/notion-types': 0.1.1
       is-url-superb: 6.1.0
       memoize: 10.2.0
       normalize-url: 8.1.1

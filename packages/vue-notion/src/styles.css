@@ -3,6 +3,9 @@
     ui-sans-serif, system-ui, apple-system, BlinkMacSystemFont, 'Segoe UI',
     Helvetica, 'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji',
     'Segoe UI Symbol';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-emoji: emoji;
   --fg-color: rgb(55, 53, 47);
   --fg-color-0: rgba(55, 53, 47, 0.09);
   --fg-color-1: rgba(55, 53, 47, 0.16);
@@ -666,7 +669,7 @@ details.notion-toggle .notion-h {
 .notion-page-icon-hero.notion-page-icon-span .notion-page-icon {
   font-size: 78px;
   line-height: 1.1;
-  color: var(--fg-color-icon);
+  /* Remove color forcing to allow color emojis */
 }
 
 .notion-page-icon-hero.notion-page-icon-image .notion-page-icon {
@@ -683,12 +686,12 @@ details.notion-toggle .notion-h {
 }
 
 .notion-page-icon {
-  font-family:
-    'Apple Color Emoji', 'Segoe UI Emoji', NotoColorEmoji, 'Noto Color Emoji',
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji',
     'Segoe UI Symbol', 'Android Emoji', EmojiSymbols;
   font-size: 1.1em;
   fill: var(--fg-color-6);
-  color: var(--fg-color-icon);
+  font-variant-emoji: emoji;
+  vertical-align: middle;
 }
 
 .notion-search .notion-page-icon {
@@ -706,11 +709,17 @@ svg.notion-page-icon {
 }
 
 .notion-page-icon-inline {
-  width: 22px;
-  height: 22px;
-  max-width: 22px;
-  max-height: 22px;
-  margin: 0 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1em;
+  height: 1.1em;
+  max-width: 1.1em;
+  max-height: 1.1em;
+  margin-right: 0.3em;
+  vertical-align: middle;
+  position: relative;
+  top: -0.1em;
 }
 
 .notion-page-icon-inline span {
@@ -860,8 +869,8 @@ svg.notion-page-icon {
 
 .notion-list {
   margin: 0;
-  margin-block-start: 0.6em;
-  margin-block-end: 0.6em;
+  margin-block-start: 1px;
+  margin-block-end: 1px;
 }
 
 .notion-list-disc {
@@ -877,6 +886,10 @@ svg.notion-page-icon {
   margin-bottom: 0;
 }
 
+.notion-list + .notion-list {
+  margin-top: -6px;
+}
+
 .notion-list-disc li {
   padding-left: 0.1em;
 }
@@ -886,7 +899,7 @@ svg.notion-page-icon {
 }
 
 .notion-list li {
-  padding: 6px 0;
+  padding: 2px 0;
   white-space: pre-wrap;
 }
 

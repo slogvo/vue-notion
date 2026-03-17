@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import type { Block, BaseContentBlock, PageBlock } from '@slogvo/notion-types'
 import { useNotionContext } from '../context'
-import { cs, uuidToId, getTextContent } from '../utils'
+import { cs, uuidToId, getTextContent, getListNumber } from '../utils'
 import Text from './text/Text.vue'
 import PageIcon from './PageIcon.vue'
 import Asset from './Asset.vue'
@@ -14,12 +14,18 @@ import NotionBookmark from './Bookmark.vue'
 import NotionBreadcrumbs from './Breadcrumbs.vue'
 import ExternalObjectInstance from './ExternalObjectInstance.vue'
 
-const props = defineProps<{
-  block: Block
-  level: number
-  className?: string
-  hideBlockId?: boolean
-}>()
+const props = withDefaults(
+  defineProps<{
+    block: Block
+    level: number
+    className?: string
+    hideBlockId?: boolean
+    wrapList?: boolean
+  }>(),
+  {
+    wrapList: true
+  }
+)
 
 const {
   components,
@@ -78,6 +84,10 @@ const collectionName = computed(() => {
 })
 
 const blockAsBaseContent = computed(() => props.block as BaseContentBlock)
+
+const listNumber = computed(() =>
+  getListNumber(props.block.id, recordMap.block)
+)
 </script>
 
 <template>
@@ -210,22 +220,32 @@ const blockAsBaseContent = computed(() => props.block as BaseContentBlock)
   </div>
 
   <!-- Bullet List -->
-  <ul
-    v-else-if="block.type === 'bulleted_list'"
-    :class="cs('notion-list', 'notion-list-disc', blockId)"
-  >
-    <li><Text :value="title" :block="block" /></li>
-    <slot />
-  </ul>
+  <template v-else-if="block.type === 'bulleted_list'">
+    <ul v-if="wrapList" :class="cs('notion-list', 'notion-list-disc', blockId)">
+      <li><Text :value="title" :block="block" /></li>
+      <slot />
+    </ul>
+    <template v-else>
+      <li><Text :value="title" :block="block" /></li>
+      <slot />
+    </template>
+  </template>
 
   <!-- Numbered List -->
-  <ol
-    v-else-if="block.type === 'numbered_list'"
-    :class="cs('notion-list', 'notion-list-numbered', blockId)"
-  >
-    <li><Text :value="title" :block="block" /></li>
-    <slot />
-  </ol>
+  <template v-else-if="block.type === 'numbered_list'">
+    <ol
+      v-if="wrapList"
+      :class="cs('notion-list', 'notion-list-numbered', blockId)"
+      :start="listNumber"
+    >
+      <li><Text :value="title" :block="block" /></li>
+      <slot />
+    </ol>
+    <template v-else>
+      <li><Text :value="title" :block="block" /></li>
+      <slot />
+    </template>
+  </template>
 
   <!-- ToDo (Checkbox) -->
   <div v-else-if="block.type === 'to_do'" :class="cs('notion-to-do', blockId)">

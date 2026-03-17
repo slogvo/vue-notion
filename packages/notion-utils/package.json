@@ -1,6 +1,6 @@
 {
   "name": "@slogvo/notion-utils",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "type": "module",
   "description": "Useful utilities for working with Notion data. Isomorphic.",
   "repository": "slogvo/vue-notion",
