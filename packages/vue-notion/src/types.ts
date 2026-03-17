@@ -44,4 +44,5 @@ export interface NotionContext {
   forceCustomImages: boolean
   zoom?: any
   hideHeader?: boolean
+  openLightbox?: (url: string) => void
 }

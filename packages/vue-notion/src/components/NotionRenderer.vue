@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, toRefs, onMounted } from 'vue'
+import { computed, toRefs, onMounted, ref } from 'vue'
 import type { ExtendedRecordMap, Block } from '@slogvo/notion-types'
 import { defaultMapImageUrl } from '@slogvo/notion-utils'
 import { provideNotionContext } from '../context'
@@ -20,6 +20,8 @@ import NotionCollection from './Collection.vue'
 import NotionModal from './Modal.vue'
 import NotionHeader from './Header.vue'
 import LazyImage from './LazyImage.vue'
+import VueEasyLightbox from 'vue-easy-lightbox'
+import 'vue-easy-lightbox/dist/external-css/vue-easy-lightbox.css'
 
 const props = withDefaults(
   defineProps<{
@@ -69,11 +71,52 @@ const mergedComponents = computed<NotionComponents>(() => ({
 
 // Setup Medium Zoom
 let zoom: Zoom | null = null
+const isMounted = ref(false)
+onMounted(() => {
+  isMounted.value = true
+})
+
 if (props.isImageZoomable && typeof window !== 'undefined') {
   zoom = mediumZoom({
     background: 'rgba(0, 0, 0, 0.8)',
     margin: 24
   })
+}
+
+// Lightbox state
+const lightboxVisible = ref(false)
+const lightboxIndex = ref(0)
+const lightboxImages = ref<string[]>([])
+
+// Collect all images for the gallery
+const allImageUrls = computed(() => {
+  const urls: string[] = []
+  if (!props.recordMap?.block) return urls
+
+  Object.values(props.recordMap.block).forEach(block => {
+    const value = block.value
+    if (value?.type === 'image') {
+      let src =
+        props.recordMap.signed_urls?.[value.id] ||
+        value.properties?.source?.[0]?.[0]
+      if (src) {
+        if (value.space_id) {
+          const url = new URL(src)
+          url.searchParams.set('spaceId', value.space_id)
+          src = url.toString()
+        }
+        urls.push(props.mapImageUrl ? props.mapImageUrl(src, value) : src)
+      }
+    }
+  })
+  return urls
+})
+
+function openLightbox(url: string) {
+  const index = allImageUrls.value.indexOf(url)
+  lightboxIndex.value = Math.max(0, index)
+  lightboxImages.value = allImageUrls.value
+  lightboxVisible.value = true
 }
 
 // Provide context
@@ -93,10 +136,18 @@ provideNotionContext({
   defaultPageCoverPosition: props.defaultPageCoverPosition || 0.5,
   forceCustomImages: !!props.components?.Image,
   zoom: zoom,
-  hideHeader: props.hideHeader
+  hideHeader: props.hideHeader,
+  openLightbox
 })
 </script>
 
 <template>
   <NotionBlockRenderer :level="0" :zoom="isImageZoomable ? zoom : null" />
+  <VueEasyLightbox
+    v-if="isMounted"
+    :visible="lightboxVisible"
+    :imgs="lightboxImages"
+    :index="lightboxIndex"
+    @hide="lightboxVisible = false"
+  />
 </template>

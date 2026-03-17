@@ -34,7 +34,8 @@ const {
   fullPage,
   darkMode,
   recordMap,
-  hideHeader
+  hideHeader,
+  zoom
 } = useNotionContext()
 
 const blockId = computed(() =>
@@ -344,6 +345,7 @@ const listNumber = computed(() =>
       ].includes(block.type)
     "
     :block="blockAsBaseContent"
+    :zoomable="!!zoom"
   >
     <template v-if="block.properties?.caption">
       <figcaption class="notion-asset-caption">
