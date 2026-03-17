@@ -133,7 +133,15 @@ const youtubeVideoId = computed(() => {
 </script>
 
 <template>
-  <div v-if="source" :style="style">
+  <div
+    v-if="source"
+    :class="[
+      'notion-asset-wrapper',
+      block.format?.block_full_width && 'notion-asset-wrapper-full',
+      block.format?.block_page_width && 'notion-asset-wrapper-page'
+    ]"
+    :style="style"
+  >
     <!-- Image -->
     <component
       :is="components.Image"
