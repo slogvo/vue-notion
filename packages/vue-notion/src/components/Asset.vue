@@ -41,11 +41,7 @@ const style = computed(() => {
     } = props.block.format
 
     if (block_full_width || block_page_width) {
-      if (block_full_width) {
-        s.width = '100vw'
-      } else {
-        s.width = '100%'
-      }
+      s.width = '100%'
 
       if (props.block.type === 'video') {
         if (block_height) {
